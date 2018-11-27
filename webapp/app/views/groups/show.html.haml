@@ -1,0 +1,49 @@
+- model_class = Group
+.page-header
+  = link_to t("helpers.links.back"), groups_path, class: "btn btn-default pull-right"
+  -if user_signed_in? && current_user.id == @group.user_id
+    = link_to t("helpers.links.edit"), edit_group_path(@group), class: "btn btn-default pull-right mr-2"
+    = link_to t("helpers.links.destroy"), group_path(@group), method: "delete",
+              data: { confirm: t("helpers.links.confirm") }, class: "btn btn-danger pull-right mr-2"
+  %h1=t "helpers.titles.show", model: model_class.model_name.human
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @group.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:introduction)
+    %td=br @group.introduction
+  %tr
+    %th.th-label= model_class.human_attribute_name(:image)
+    %td
+      -unless @group.image.url.blank?
+        =image_tag @group.image.url, class: "img-responsive"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:facebook_url)
+    %td
+      -unless @group.facebook_url.blank?
+        = link_to @group.facebook_url, @group.facebook_url , target: "_blank"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:url)
+    %td
+      -unless @group.url.blank?
+        = link_to @group.url, @group.url , target: "_blank"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:description)
+    %td=br @group.description
+
+%h3='このコミュニティのイベント'
+- model_class = Event
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:kaisai_date)
+      %th= model_class.human_attribute_name(:announcement)
+  %tbody
+    - @group.events.each do |event|
+      %tr
+        %td= link_to event.name, ev_show_path(id: event.id)
+        %td= event.kaisai_date
+        %td= event.announcement

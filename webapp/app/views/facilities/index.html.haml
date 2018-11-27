@@ -1,0 +1,65 @@
+- model_class = Facility
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+            
+
+
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "全て", facilities_path(type: 'all')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "子育て関連施設", facilities_path(type: '23901')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "文化・スポーツ施設・公園", facilities_path(type: '23900')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "公民館等", facilities_path(type: '23902')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "公園(いいとだパーク)", facilities_path(type: '27487')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "市役所・支所", facilities_path(type: '26277')
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "消防", facilities_path(type: '23899')  
+　
+-#%button.btn.btn-secondary{:title => "", :type => "button"}
+= link_to "その他公共施設", facilities_path(type: '23903')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "利用可能なスペースがある", facilities_path(type: 'space')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "会議室を使いたい", facilities_path(type: 'conference')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "公演で使いたい", facilities_path(type: 'performance')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "スポーツしたい", facilities_path(type: 'sports')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "教室を開きたい", facilities_path(type: 'classroom')
+　
+-#%button.btn.btn-secondary{:type => "button"}
+= link_to "チラシを置ける", facilities_path(type: 'flyer')
+
+	
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:address)
+      %th= model_class.human_attribute_name(:facility_category)
+  %tbody
+    - @facilities.each do |facility|
+      %tr
+        %td= link_to facility.name, facility_path(facility)
+        %td= facility.address
+        %td= facility.facility_category.name
+.pager-box
+  .pagination-info= page_entries_info @facilities
+  = paginate @facilities

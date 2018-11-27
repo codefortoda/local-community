@@ -1,0 +1,16 @@
+- model_class = object.class
+
+-if object.errors.any?
+  .alert.alert-danger.alert-dismissable{:role => "alert"}
+    %button.close{:type => "button", :data => {:dismiss => "alert"} }
+      &times;
+    -#%h4= "#{pluralize(object.errors.count, "error")} prohibited this news from being saved:"
+    - if object.errors.count == 1
+      %h4=I18n.translate "errors.template.header.one", :model => model_class.model_name.human.titleize
+    - else
+      %h4=I18n.translate "errors.template.header.other",:model => model_class.model_name.human.titleize, :count => object.errors.count
+
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li= msg
+

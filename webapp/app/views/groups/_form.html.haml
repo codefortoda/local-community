@@ -1,0 +1,38 @@
+= form_for @group, html: { class: "form form-horizontal group" } do |f|
+  = render '/validation_message', object: @group
+  .form-group
+    = f.label :name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :introduction, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :introduction, class: "form-control"
+  .form-group
+    = f.label :image, class: "control-label col-lg-2"
+    .col-lg-10
+      - if @group.image?
+        = image_tag @group.image.url, class: "img-responsive"
+        %br
+      = f.file_field :image, class: 'form-control'
+      = f.hidden_field :image_cache
+      -if @group.persisted? && @group.image?
+        = f.check_box :remove_image
+        画像を削除
+
+  .form-group
+    = f.label :facebook_url, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :facebook_url, class: "form-control"
+  .form-group
+    = f.label :url, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :url, class: "form-control"
+  .form-group
+    = f.label :description, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :description, class: "form-control"
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = link_to t("helpers.links.cancel"), groups_path, class: "btn btn-default"
+      = f.submit nil, class: "btn btn-primary"

@@ -1,0 +1,5 @@
+- model_class = <%= singular_table_name.classify %>
+.page-header
+  = link_to t("helpers.links.back"), <%= index_helper %>_path, class: "btn btn-default pull-right"
+  %h1=t "helpers.titles.edit", model: model_class.model_name.human
+= render partial: "form"

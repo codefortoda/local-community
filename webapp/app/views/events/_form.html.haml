@@ -1,0 +1,85 @@
+= form_for @event, html: { class: "form form-horizontal event" } do |f|
+  .form-group
+    = f.label :group, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :group, class: "form-control"
+      = f.error_span(:group)
+  .form-group
+    = f.label :name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :name, class: "form-control"
+      = f.error_span(:name)
+  .form-group
+    = f.label :url, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :url, class: "form-control"
+      = f.error_span(:url)
+  .form-group
+    = f.label :place, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :place, class: "form-control"
+      = f.error_span(:place)
+  .form-group
+    = f.label :kaisai_date, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :kaisai_date, class: "form-control"
+      = f.error_span(:kaisai_date)
+  .form-group
+    = f.label :notices, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :notices, class: "form-control"
+      = f.error_span(:notices)
+  .form-group
+    = f.label :announcement, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :announcement, class: "form-control"
+      = f.error_span(:announcement)
+  .form-group
+    = f.label :price, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :price, class: "form-control"
+      = f.error_span(:price)
+  .form-group
+    = f.label :organizer, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :organizer, class: "form-control"
+      = f.error_span(:organizer)
+  .form-group
+    = f.label :how_apply, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :how_apply, class: "form-control"
+      = f.error_span(:how_apply)
+  .form-group
+    = f.label :period, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :period, class: "form-control"
+      = f.error_span(:period)
+  .form-group
+    = f.label :contact_name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :contact_name, class: "form-control"
+      = f.error_span(:contact_name)
+  .form-group
+    = f.label :ontact, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :ontact, class: "form-control"
+      = f.error_span(:ontact)
+  .form-group
+    = f.label :location, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :location, class: "form-control"
+      = f.error_span(:location)
+  .form-group
+    = f.label :access, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :access, class: "form-control"
+      = f.error_span(:access)
+  .form-group
+    = f.label :parking_lot, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :parking_lot, class: "form-control"
+      = f.error_span(:parking_lot)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = link_to t("helpers.links.cancel"), events_path, class: "btn btn-default"
+      = f.submit nil, class: "btn btn-primary"

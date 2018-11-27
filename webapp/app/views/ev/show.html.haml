@@ -1,0 +1,54 @@
+- model_class = Event
+.page-header
+  = link_to t("helpers.links.back"), ev_index_path, class: "btn btn-default pull-right"
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:group)
+    %td= @event.group.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @event.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:url)
+    %td= @event.url
+  %tr
+    %th.th-label= model_class.human_attribute_name(:place)
+    %td= @event.place
+  %tr
+    %th.th-label= model_class.human_attribute_name(:kaisai_date)
+    %td= @event.kaisai_date
+  %tr
+    %th.th-label= model_class.human_attribute_name(:notices)
+    %td= @event.notices
+  %tr
+    %th.th-label= model_class.human_attribute_name(:announcement)
+    %td= @event.announcement
+  %tr
+    %th.th-label= model_class.human_attribute_name(:price)
+    %td= @event.price
+  %tr
+    %th.th-label= model_class.human_attribute_name(:organizer)
+    %td= @event.organizer
+  %tr
+    %th.th-label= model_class.human_attribute_name(:how_apply)
+    %td= @event.how_apply
+  %tr
+    %th.th-label= model_class.human_attribute_name(:period)
+    %td= @event.period
+  %tr
+    %th.th-label= model_class.human_attribute_name(:contact_name)
+    %td= @event.contact_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:ontact)
+    %td= @event.ontact
+  %tr
+    %th.th-label= model_class.human_attribute_name(:location)
+    %td= @event.location
+  %tr
+    %th.th-label= model_class.human_attribute_name(:access)
+    %td= @event.access
+  %tr
+    %th.th-label= model_class.human_attribute_name(:parking_lot)
+    %td= @event.parking_lot

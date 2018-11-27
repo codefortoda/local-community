@@ -1,0 +1,22 @@
+- model_class = Group
+.page-header
+  -if user_signed_in?
+    = link_to t("helpers.links.new"), new_group_path, class: "btn btn-primary pull-right"
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+  -unless user_signed_in?
+    %p="コミュニティを作成するにはログインしてください。"
+
+%table.ui.blue.striped.celled.table
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td
+          -unless group.image.url.blank?
+            =image_tag group.image.url, :size => "80x80"
+        %td
+          = link_to group.name, group_path(group)
+          %br
+          =br group.introduction
+.pager-box
+  .pagination-info= page_entries_info @groups
+  = paginate @groups

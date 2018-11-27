@@ -1,0 +1,17 @@
+- model_class = Space
+.page-header
+  = link_to t("helpers.links.back"), facility_path(id: @space.facility.id), class: "btn btn-default pull-right"
+  %h1="#{@space.facility.name}のスペース"
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @space.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:image)
+    %td
+      -unless @space.image.blank?
+        =image_tag @space.image.url, class: "img-responsive"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:detail)
+    %td=br @space.detail

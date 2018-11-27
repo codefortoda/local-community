@@ -1,0 +1,7 @@
+- model_class = Space
+.page-header
+  = link_to t("helpers.links.back"), manage_spaces_path, class: "btn btn-default pull-right"
+  %h1=t "helpers.titles.new", model: model_class.model_name.human
+  %p= @facility.name
+
+= render partial: "form"

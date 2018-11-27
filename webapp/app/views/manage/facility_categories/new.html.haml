@@ -1,0 +1,5 @@
+- model_class = FacilityCategory
+.page-header
+  = link_to t("helpers.links.back"), manage_facility_categories_path, class: "btn btn-default pull-right"
+  %h1=t "helpers.titles.new", model: model_class.model_name.human
+= render partial: "form"

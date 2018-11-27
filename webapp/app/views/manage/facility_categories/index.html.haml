@@ -1,0 +1,33 @@
+- model_class = FacilityCategory
+.page-header
+  = link_to t("helpers.links.new"), new_manage_facility_category_path, class: "btn btn-primary pull-right"
+  %h1=t "helpers.titles.index", model: model_class.model_name.human
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:sys_flag)
+      %th= model_class.human_attribute_name(:created_at)
+      %th.actions-thead.actions=t "helpers.actions"
+  %tbody
+    - @facility_categories.each do |facility_category|
+      %tr
+        %td= link_to facility_category.id, manage_facility_category_path(facility_category)
+        %td= facility_category.name
+        %td
+          -if facility_category.sys_flag
+            = 'システム定義'
+          -else
+            = 'ユーザー定義'
+        %td=l facility_category.created_at, format: :long
+        %td.actions-tbody.actions
+          = link_to t("helpers.links.show"), manage_facility_category_path(facility_category), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.edit"), edit_manage_facility_category_path(facility_category), class: "btn btn-default btn-xs"
+          - unless facility_category.sys_flag
+            = link_to t("helpers.links.destroy"), manage_facility_category_path(facility_category), method: :delete,
+                      data: { confirm: t("helpers.links.confirm") }, class: "btn btn-xs btn-danger"
+.pager-box
+  .pagination-info= page_entries_info @facility_categories
+  = paginate @facility_categories

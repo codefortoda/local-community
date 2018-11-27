@@ -1,0 +1,15 @@
+- model_class = FacilityCategory
+.page-header
+  = link_to t("helpers.links.back"), manage_facility_categories_path, class: "btn btn-default pull-right"
+  = link_to t("helpers.links.edit"), edit_manage_facility_category_path(@facility_category), class: "btn btn-default pull-right mr-2"
+  = link_to t("helpers.links.destroy"), manage_facility_category_path(@facility_category), method: "delete",
+            data: { confirm: t("helpers.links.confirm") }, class: "btn btn-danger pull-right mr-2"
+  %h1=t "helpers.titles.show", model: model_class.model_name.human
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @facility_category.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:sys_flag)
+    %td= @facility_category.sys_flag

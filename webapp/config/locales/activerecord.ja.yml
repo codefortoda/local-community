@@ -1,0 +1,84 @@
+ja:
+  activerecord:
+    models:
+      facility_category: 施設カテゴリ
+      facility: 施設
+      group: コミュニティ
+      space: スペース
+      event: イベント
+    attributes:
+      facility_category:
+        id: ID
+        name: 名称
+        sys_flag: システム定義
+        created_at: 登録日時
+        updated_at: 更新日時
+      facility:
+        id: ID
+        identifier: 識別情報
+        organization_code: 団体コード
+        organization_name: 団体名
+        identifier_name: 識別
+        name: 施設名
+        overview: 概要
+        common_name: 通称
+        address: 住所
+        latitude: 緯度 
+        longitude: 経度
+        tel: 電話番号
+        url: ホームページ
+        barrier_free: バリアフリー情報
+        image: 画像
+        start_time: 開始時間
+        end_time: 終了時間
+        use: 利用用途
+        service: サービス情報
+        fixture: 設備情報
+        renting_space: 利用可能なスペース
+        conference: 会議
+        performance: 公演
+        sports: 運動
+        classroom: 教室
+        flyer: チラシを置ける
+        facility_category: 施設カテゴリ
+        created_at: 登録日時
+        updated_at: 更新日時
+      group:
+        id: ID
+        name: コミュニティ名
+        introduction: 紹介文
+        image: 画像
+        facebook_url: facebookグループページ
+        url: ウェブサイト
+        description: 紹介文（詳細）
+        user: グループのオーナー
+        created_at: 登録日時
+        updated_at: 更新日時
+      space:
+        id: ID
+        name: スペース名称
+        image: 画像
+        detail: 詳細
+        facility: 施設
+        created_at: 登録日時
+        updated_at: 更新日時
+      event:
+        id: ID
+        group: コミュニティ
+        name: イベント名称
+        url: イベントURL
+        place: 会場
+        kaisai_date: 開催日時
+        notices: 特記事項
+        announcement: 告知文章
+        price: 参加料金
+        organizer: 主催者
+        how_apply: 参加申込方法
+        period: 参加申込期間
+        contact_name: 連絡先名称
+        ontact: 連絡先
+        location: 会場位置情報
+        access: アクセス方法
+        parking_lot: 駐車場情報
+        created_at: 登録日時
+        updated_at: 更新日時

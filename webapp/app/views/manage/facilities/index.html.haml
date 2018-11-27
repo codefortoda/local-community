@@ -1,0 +1,28 @@
+- model_class = Facility
+.page-header
+  = link_to t("helpers.links.new"), new_manage_facility_path, class: "btn btn-primary pull-right"
+  %h1=t "helpers.titles.index", model: model_class.model_name.human
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:facility_category)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:address)
+      %th.actions-thead.actions=t "helpers.actions"
+  %tbody
+    - @facilities.each do |facility|
+      %tr
+        %td= link_to facility.id, manage_facility_path(facility)
+        %td= facility.facility_category.name
+        %td= facility.name
+        %td= facility.address
+        %td.actions-tbody.actions
+          = link_to t("helpers.links.show"), manage_facility_path(facility), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.edit"), edit_manage_facility_path(facility), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.destroy"), manage_facility_path(facility), method: :delete,
+                    data: { confirm: t("helpers.links.confirm") }, class: "btn btn-xs btn-danger"
+.pager-box
+  .pagination-info= page_entries_info @facilities
+  = paginate @facilities

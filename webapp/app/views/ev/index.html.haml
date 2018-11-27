@@ -1,0 +1,20 @@
+- model_class = Event
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:kaisai_date)
+      %th= model_class.human_attribute_name(:announcement)
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to event.name, ev_show_path(id: event.id)
+        %td= event.kaisai_date
+        %td= event.announcement
+
+.pager-box
+  .pagination-info= page_entries_info @events
+  = paginate @events

@@ -1,0 +1,110 @@
+= form_for [:manage, @facility], html: { class: "form form-horizontal facility" } do |f|
+  = render '/validation_message', object: @facility
+  .form-group
+    = f.label :organization_code, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.number_field :organization_code, class: "form-control"
+  .form-group
+    = f.label :organization_name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :organization_name, class: "form-control"
+  .form-group
+    = f.label :identifier_name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :identifier_name, class: "form-control"
+  .form-group
+    = f.label :name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :overview, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :overview, class: "form-control"
+  .form-group
+    = f.label :common_name, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :common_name, class: "form-control"
+  .form-group
+    = f.label :address, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :latitude, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :latitude, class: "form-control"
+  .form-group
+    = f.label :longitude, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :longitude, class: "form-control"
+  .form-group
+    = f.label :tel, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :tel, class: "form-control"
+  .form-group
+    = f.label :url, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :url, class: "form-control"
+  .form-group
+    = f.label :barrier_free, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :barrier_free, class: "form-control"
+  .form-group
+    = f.label :image, class: "control-label col-lg-2"
+    .col-lg-10
+      - if @facility.image?
+        = image_tag @facility.image.url, class: "img-responsive"
+        %br
+      = f.file_field :image, class: 'form-control'
+      = f.hidden_field :image_cache
+      -if @facility.persisted? && @facility.image?
+        = f.check_box :remove_image
+        画像を削除
+
+  .form-group
+    = f.label :start_time, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :start_time, class: "form-control"
+  .form-group
+    = f.label :end_time, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_field :end_time, class: "form-control"
+  .form-group
+    = f.label :use, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :use, class: "form-control"
+  .form-group
+    = f.label :service, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :service, class: "form-control"
+  .form-group
+    = f.label :fixture, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.text_area :fixture, class: "form-control"
+  .form-group
+    = f.label :renting_space, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :renting_space, class: "form-control"
+  .form-group
+    = f.label :conference, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :conference, class: "form-control"
+  .form-group
+    = f.label :performance, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :performance, class: "form-control"
+  .form-group
+    = f.label :sports, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :sports, class: "form-control"
+  .form-group
+    = f.label :classroom, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :classroom, class: "form-control"
+  .form-group
+    = f.label :flyer, class: "control-label col-lg-2"
+    .col-lg-10
+      = f.check_box :flyer, class: "form-control"
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = link_to t("helpers.links.cancel"), manage_facilities_path, class: "btn btn-default"
+      = f.submit nil, class: "btn btn-primary"

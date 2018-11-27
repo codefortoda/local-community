@@ -1,0 +1,111 @@
+- model_class = Facility
+.page-header
+  = link_to t("helpers.links.back"), manage_facilities_path, class: "btn btn-default pull-right"
+  = link_to t("helpers.links.edit"), edit_manage_facility_path(@facility), class: "btn btn-default pull-right mr-2"
+  = link_to t("helpers.links.destroy"), manage_facility_path(@facility), method: "delete",
+            data: { confirm: t("helpers.links.confirm") }, class: "btn btn-danger pull-right mr-2"
+  = link_to 'この施設にスペースを追加する', new_manage_space_path(facility_id: @facility.id), class: "btn btn-default pull-right"
+  %h1=t "helpers.titles.show", model: model_class.model_name.human
+  %p= @facility.facility_category.name
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:organization_code)
+    %td= @facility.organization_code
+  %tr
+    %th.th-label= model_class.human_attribute_name(:organization_name)
+    %td= @facility.organization_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:identifier_name)
+    %td= @facility.identifier_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @facility.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:overview)
+    %td= @facility.overview
+  %tr
+    %th.th-label= model_class.human_attribute_name(:common_name)
+    %td= @facility.common_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:address)
+    %td= @facility.address
+  %tr
+    %th.th-label= model_class.human_attribute_name(:latitude)
+    %td= @facility.latitude
+  %tr
+    %th.th-label= model_class.human_attribute_name(:longitude)
+    %td= @facility.longitude
+  %tr
+    %th.th-label= model_class.human_attribute_name(:tel)
+    %td= @facility.tel
+  %tr
+    %th.th-label= model_class.human_attribute_name(:url)
+    %td
+      -unless @facility.url.blank?
+        = link_to @facility.url, @facility.url , target: "_blank"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:barrier_free)
+    %td= @facility.barrier_free
+  %tr
+    %th.th-label= model_class.human_attribute_name(:image)
+    %td
+      -unless @facility.image.blank?
+        =image_tag @facility.image.url, class: "img-responsive"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:start_time)
+    %td= @facility.start_time
+  %tr
+    %th.th-label= model_class.human_attribute_name(:end_time)
+    %td= @facility.end_time
+  %tr
+    %th.th-label= model_class.human_attribute_name(:use)
+    %td= @facility.use
+  %tr
+    %th.th-label= model_class.human_attribute_name(:service)
+    %td= @facility.service
+  %tr
+    %th.th-label= model_class.human_attribute_name(:fixture)
+    %td= @facility.fixture
+
+  %tr
+    %th.th-label= model_class.human_attribute_name(:renting_space)
+    %td
+      = 'あり' if @facility.renting_space
+  %tr
+    %th.th-label= '主な用途'
+    %td
+      = "会議　" if @facility.conference
+      = "公演　" if @facility.performance
+      = "運動　" if @facility.sports
+      = "教室" if @facility.classroom
+  %tr
+    %th.th-label= model_class.human_attribute_name(:flyer)
+    %td
+      = '置ける' if @facility.flyer
+
+%hr
+%h3='この施設で利用可能なスペース'
+
+- model_class = Space
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:facility)
+      %th= model_class.human_attribute_name(:created_at)
+      %th.actions-thead.actions=t "helpers.actions"
+  %tbody
+    - @facility.spaces.each do |space|
+      %tr
+        %td= link_to space.id, manage_space_path(space)
+        %td= space.name
+        %td= space.facility.name
+        %td=l space.created_at, format: :long
+        %td.actions-tbody.actions
+          = link_to t("helpers.links.show"), manage_space_path(space), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.edit"), edit_manage_space_path(space), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.destroy"), manage_space_path(space), method: :delete,
+                    data: { confirm: t("helpers.links.confirm") }, class: "btn btn-xs btn-danger"

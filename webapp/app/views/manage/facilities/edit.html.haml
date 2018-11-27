@@ -1,0 +1,6 @@
+- model_class = Facility
+.page-header
+  = link_to t("helpers.links.back"), manage_facilities_path, class: "btn btn-default pull-right"
+  %h1=t "helpers.titles.edit", model: model_class.model_name.human
+  %p= @facility.facility_category.name
+= render partial: "form"

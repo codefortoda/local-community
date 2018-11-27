@@ -1,0 +1,56 @@
+- model_class = Event
+.page-header
+  = link_to t("helpers.links.new"), new_event_path, class: "btn btn-primary pull-right"
+  %h1=t "helpers.titles.index", model: model_class.model_name.human
+
+%table.ui.blue.striped.celled.table
+  %thead
+    %tr.text-center
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:group)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:url)
+      %th= model_class.human_attribute_name(:place)
+      %th= model_class.human_attribute_name(:kaisai_date)
+      %th= model_class.human_attribute_name(:notices)
+      %th= model_class.human_attribute_name(:announcement)
+      %th= model_class.human_attribute_name(:price)
+      %th= model_class.human_attribute_name(:organizer)
+      %th= model_class.human_attribute_name(:how_apply)
+      %th= model_class.human_attribute_name(:period)
+      %th= model_class.human_attribute_name(:contact_name)
+      %th= model_class.human_attribute_name(:ontact)
+      %th= model_class.human_attribute_name(:location)
+      %th= model_class.human_attribute_name(:access)
+      %th= model_class.human_attribute_name(:parking_lot)
+      %th= model_class.human_attribute_name(:created_at)
+      %th.actions-thead.actions=t "helpers.actions"
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to event.id, event_path(event)
+        %td= event.group
+        %td= event.name
+        %td= event.url
+        %td= event.place
+        %td= event.kaisai_date
+        %td= event.notices
+        %td= event.announcement
+        %td= event.price
+        %td= event.organizer
+        %td= event.how_apply
+        %td= event.period
+        %td= event.contact_name
+        %td= event.ontact
+        %td= event.location
+        %td= event.access
+        %td= event.parking_lot
+        %td=l event.created_at, format: :long
+        %td.actions-tbody.actions
+          = link_to t("helpers.links.show"), event_path(event), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.edit"), edit_event_path(event), class: "btn btn-default btn-xs"
+          = link_to t("helpers.links.destroy"), event_path(event), method: :delete,
+                    data: { confirm: t("helpers.links.confirm") }, class: "btn btn-xs btn-danger"
+.pager-box
+  .pagination-info= page_entries_info @events
+  = paginate @events

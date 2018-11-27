@@ -1,0 +1,21 @@
+- model_class = Space
+.page-header
+  = link_to t("helpers.links.back"), manage_facility_path(id: @space.facility.id), class: "btn btn-default pull-right"
+  = link_to t("helpers.links.edit"), edit_manage_space_path(@space), class: "btn btn-default pull-right mr-2"
+  = link_to t("helpers.links.destroy"), manage_space_path(@space), method: "delete",
+            data: { confirm: t("helpers.links.confirm") }, class: "btn btn-danger pull-right mr-2"
+  %h1=t "helpers.titles.show", model: model_class.model_name.human
+  %p= @space.facility.name
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @space.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:image)
+    %td
+      -unless @space.image.blank?
+        =image_tag @space.image.url, class: "img-responsive"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:detail)
+    %td=br @space.detail

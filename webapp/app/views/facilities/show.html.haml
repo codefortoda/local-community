@@ -1,0 +1,79 @@
+- model_class = Facility
+.page-header
+  = link_to t("helpers.links.back"), facilities_path, class: "btn btn-default pull-right"
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+  %p= @facility.facility_category.name
+
+%table.table.ui.blue.celled
+  %tr
+    %th.th-label= model_class.human_attribute_name(:organization_name)
+    %td= @facility.organization_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:name)
+    %td= @facility.name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:overview)
+    %td= @facility.overview
+  %tr
+    %th.th-label= model_class.human_attribute_name(:common_name)
+    %td= @facility.common_name
+  %tr
+    %th.th-label= model_class.human_attribute_name(:address)
+    %td= @facility.address
+  %tr
+    %th.th-label= model_class.human_attribute_name(:latitude)
+    %td= @facility.latitude
+  %tr
+    %th.th-label= model_class.human_attribute_name(:longitude)
+    %td= @facility.longitude
+  %tr
+    %th.th-label= model_class.human_attribute_name(:tel)
+    %td= @facility.tel
+  %tr
+    %th.th-label= model_class.human_attribute_name(:url)
+    %td
+      -unless @facility.url.blank?
+        = link_to @facility.url, @facility.url , target: "_blank"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:image)
+    %td
+      -unless @facility.image.blank?
+        =image_tag @facility.image.url, class: "img-responsive"
+  %tr
+    %th.th-label= model_class.human_attribute_name(:start_time)
+    %td= @facility.start_time
+  %tr
+    %th.th-label= model_class.human_attribute_name(:end_time)
+    %td= @facility.end_time
+  %tr
+    %th.th-label= model_class.human_attribute_name(:use)
+    %td= @facility.use
+  %tr
+    %th.th-label= model_class.human_attribute_name(:service)
+    %td= @facility.service
+  %tr
+    %th.th-label= model_class.human_attribute_name(:fixture)
+    %td= @facility.fixture
+
+  %tr
+    %th.th-label= model_class.human_attribute_name(:renting_space)
+    %td
+      = 'あり' if @facility.renting_space
+  %tr
+    %th.th-label= '主な用途'
+    %td
+      = "会議　" if @facility.conference
+      = "公演　" if @facility.performance
+      = "運動　" if @facility.sports
+      = "教室" if @facility.classroom
+
+%hr
+%h3='この施設で利用可能なスペース'
+
+- model_class = Space
+
+%table.ui.blue.striped.celled.table
+  %tbody
+    - @facility.spaces.each do |space|
+      %tr
+        %td= link_to space.name, space_show_path(id: space.id)
