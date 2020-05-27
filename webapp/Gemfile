@@ -94,7 +94,7 @@ gem "haml-rails", "1.0.0"
 # 初期データ投入
 gem "seed-fu", "2.3.9"
 # ユーザ認証
-gem "devise", "4.5.0"
+gem "devise", "4.7.1"
 # 各APPごとに環境変数を設定
 gem "dotenv-rails", "2.5.0"
 # 静的データをActiveModelとして扱う
